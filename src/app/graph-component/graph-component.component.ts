@@ -3,17 +3,20 @@ import {
   AdjacentNodesGraphBuilder,
   Arrow,
   CreateEdgeInputMode,
-  EdgeEventArgs, GraphComponent,
+  EdgeEventArgs,
+  GraphComponent,
   GraphEditorInputMode,
   HierarchicLayout,
-  IEdge, ILayoutAlgorithm,
+  IEdge,
+  ILayoutAlgorithm,
   INode,
   LayoutMode,
   LayoutOrientation,
   NodeDropInputMode,
   NodeEventArgs,
   PolylineEdgeStyle,
-  Rect, Size,
+  Rect,
+  Size,
   TemplateNodeStyle
 } from 'yfiles'
 import TaskNodeCandidateProvider from "./taskNodeCandidateProvider";
@@ -92,6 +95,25 @@ export class GraphComponentComponent {
           ? node.tag.name.substr(0, ExportConstants.nameLengthLimit) + '...' : node.tag.name;
       node.tag.wrappedDescription = (node.tag.description.length > ExportConstants.descriptiomLengthLimit)
           ? node.tag.description.substr(0, ExportConstants.descriptiomLengthLimit) + '...' : node.tag.description;
+      TemplateNodeStyle.CONVERTERS.importanceConverter = (value: string, parameter?: string) => {
+        switch (value) {
+          default: {
+            return ExportConstants.defaultColor;
+          }
+          case "important": {
+            return ExportConstants.importantColor;
+          }
+          case "unimportant": {
+            return ExportConstants.unimportantColor;
+          }
+          case "urgent": {
+            return ExportConstants.urgentColor;
+          }
+          case "expired": {
+            return ExportConstants.expiredColor;
+          }
+        }
+      };
     });
     this.graphComponent.morphLayout(this.createLayout(false)).then();
   }

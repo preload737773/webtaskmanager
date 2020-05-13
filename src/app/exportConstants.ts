@@ -1,7 +1,13 @@
 import {ArrowType, Fill, Stroke} from "yfiles";
 
 export class ExportConstants {
-    //dndPanel
+    // Importance
+    public static readonly importantColor = "orange";
+    public static readonly unimportantColor = "violet";
+    public static readonly urgentColor = "red";
+    public static readonly expiredColor = "gray";
+    public static readonly defaultColor = "lightgreen";
+    // DndPanel
     public static readonly maxItemWidth = 100;
     //SVG Node Style Constraints
     public static readonly startNodeWidth = 175;

@@ -15,7 +15,7 @@
 
     <g id="processNode">
       <rect fill='#f2f2f2' stroke='white' rx='27' ry='27' width='{TemplateBinding width}' height='{TemplateBinding height}'></rect>
-      <ellipse rx="10" ry="10" fill="{Binding importance}" transform="translate(5 5)"></ellipse>
+      <ellipse rx="10" ry="10" fill="{Binding importance, Converter=importanceConverter, Parameter=0}" transform="translate(5 5)"></ellipse>
       <g transform="translate(15 13)" data-content="{Binding wrappedName, Converter=TextWrapConverter, Parameter=50 50; 18px sans-serif; none; black}"></g>
       <g transform="translate(15 33)" data-content="{Binding wrappedDescription, Converter=TextWrapConverter, Parameter=50 20; 14px sans-serif; none; black}"></g>
     </g>

@@ -71,6 +71,10 @@ export class AppComponent implements AfterViewInit {
                   $('#modalCenter').modal("hide");
                   let node = this.gcComponent.graphComponent.graph.createNode();
                   node.tag = tag;
+                  node.tag.wrappedName = (node.tag.name.length > ExportConstants.nameLengthLimit)
+                      ? node.tag.name.substr(0, ExportConstants.nameLengthLimit) + '...' : node.tag.name;
+                  node.tag.wrappedDescription = (node.tag.description.length > ExportConstants.descriptiomLengthLimit)
+                      ? node.tag.description.substr(0, ExportConstants.descriptiomLengthLimit) + '...' : node.tag.description;
                   this.gcComponent.graphComponent.graph.addPortAt(node, node.layout.center);
                   this.gcComponent.graphComponent.graph.setStyle(node, new TemplateNodeStyle(node.tag.style));
                   this.gcComponent.graphComponent.morphLayout(this.gcComponent.createLayout(true)).then();
@@ -94,6 +98,10 @@ export class AppComponent implements AfterViewInit {
                 nodeInfo.tag.notificationDate = date.value;
                 nodeInfo.tag.importance = importance.value;
                 let a = new TemplateNodeStyle(nodeInfo.tag.style);
+                nodeInfo.tag.wrappedName = (nodeInfo.tag.name.length > ExportConstants.nameLengthLimit)
+                      ? nodeInfo.tag.name.substr(0, ExportConstants.nameLengthLimit) + '...' : nodeInfo.tag.name;
+                nodeInfo.tag.wrappedDescription = (nodeInfo.tag.description.length > ExportConstants.descriptiomLengthLimit)
+                      ? nodeInfo.tag.description.substr(0, ExportConstants.descriptiomLengthLimit) + '...' : nodeInfo.tag.description;
                 this.gcComponent.graphComponent.graph.setStyle(nodeInfo, new TemplateNodeStyle(nodeInfo.tag.style));
                 this.gcComponent.graphComponent.morphLayout(this.gcComponent.createLayout(true)).then();
           },

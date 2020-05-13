@@ -5,22 +5,29 @@
   </div>
   <ul class="nav flex-column" id="collapsiblePanel" *ngIf="task.tag">
     <li class="nav-item">
-      <label class="taskLabel" for="nameInput">Name:</label><input type="text" id="nameInput" style="width: 200px" value="{{ task.tag.name }}">
+      <label class="taskLabel" for="nameInput">Name:</label><input type="text" id="nameInput" style="width: 100%" value="{{ task.tag.name }}">
     </li>
     <li class="nav-item">
-      <label class="taskLabel" for="descriptionInput">Description: </label><input type="text" id="descriptionInput" style="width: 200px" value="{{ task.tag.description }}">
+      <label class="taskLabel" for="descriptionInput">Description: </label><input type="text" id="descriptionInput" style="width: 100%" value="{{ task.tag.description }}">
     </li>
     <li class="nav-item">
-      <label class="taskLabel" for="dateInput">Notification date: </label><input type="text" id="dateInput" style="width: 200px" value="{{ task.tag.notificationDate }}">
+      <label class="taskLabel" for="dateInput">Notification date: </label><input type="text" id="dateInput" style="width: 100%" value="{{ task.tag.notificationDate }}">
     </li>
     <li class="nav-item">
-      <label class="taskLabel" for="importanceInput">Importance: </label><input type="text" id="importanceInput" style="width: 200px" value="{{ task.tag.importance }}">
+      <label class="taskLabel" for="importanceInput">Importance: </label>
+      <select id="importanceInput" style="width: 100%" value="{{ task.tag.importance }}">
+        <option value="important">Important</option>
+        <option value="unimportant">Unimportant</option>
+        <option value="urgent">Urgent</option>
+        <option value="expired">Expired</option>
+        <option value="default">Default</option>
+      </select>
     </li>
     <li class="nav-item">
-      <button id="editButton" class="btn btn-outline-secondary" (click)="editClicked.emit()" style="width: 200px; margin-top: 15px;">Edit Task</button>
+      <button id="editButton" class="btn btn-outline-secondary" (click)="editClicked.emit()" style="width: 100%; margin-top: 15px;">Edit Task</button>
     </li>
   </ul>
   <div>
-    <button id="deleteButton" class="btn btn-outline-secondary" (click)="deleteClicked.emit()" style="width: 200px; margin-top: 15px;">Delete</button>
+    <button id="deleteButton" class="btn btn-outline-secondary" (click)="deleteClicked.emit()" style="width: 100%; margin-top: 15px;">Delete</button>
   </div>
 </div>
