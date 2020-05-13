@@ -1,0 +1,33 @@
+<app-modal (onNewNode)="addTask()"></app-modal>
+<nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Web Task Manager</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#" id="username">Sign in</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 d-none d-md-block bg-dark" id="sidebar-left">
+            <hr style="background-color: lightpink; margin-top: 0; margin-bottom: 0;">
+            <div>
+                <ul class="nav flex-column">
+                    <li class="nav-item ">
+                        <div class="h5">New</div>
+                    </li>
+                    <li class="nav-item">
+                        <app-drag-and-drop-panel id="drag-and-drop-panel"></app-drag-and-drop-panel>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <main role="main" class="col-md-11 ml-sm-auto col-lg-11">
+            <graph-component></graph-component>
+        </main>
+        <properties-view *ngIf="isSidebarOpened" [task]="currentTask" (editClicked)="editTask()" (deleteClicked)="deleteItem()"></properties-view>
+    </div>
+</div>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

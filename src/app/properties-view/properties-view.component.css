@@ -1,0 +1,25 @@
+#sidebar {
+    min-width: 16%;
+    max-width: 16%;
+    min-height: 94vh;
+    /*background: #f8f9fa!important;*/
+    color: lightpink;
+    transition: all 0.3s;
+    z-index: 9999;
+    padding-left: 5px;
+    position: absolute;
+    margin-left: -16%;
+}
+
+.taskLabel {
+    font-style: oblique;
+    margin-top: 10px;
+}
+
+.h3 {
+    padding-top: 5%;
+    padding-left: 17%;
+    padding-bottom: 0;
+    margin: 0;
+    color: lightpink;
+}

@@ -1,0 +1,12 @@
+.graph-component {
+  height: 94vh;
+  max-height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+  background-image: url("https://sun1-99.userapi.com/-1-L9Brl7cqjq6LXwL_59rgchKwDyQNdz6mPXQ/_BR9-aKOWJg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+}

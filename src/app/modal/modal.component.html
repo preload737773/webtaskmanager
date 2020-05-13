@@ -1,0 +1,35 @@
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New Node</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="addNameForm">Name</label>
+            <input type="text" class="form-control" id="addNameForm" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="addDescriptionForm">Description</label>
+            <input type="text" class="form-control" id="addDescriptionForm" placeholder="Description">
+          </div>
+          <div class="form-group">
+            <label for="addNotificationDateForm">Notification date</label>
+            <input type="text" class="form-control" id="addNotificationDateForm" placeholder="Notification date">
+          </div>
+          <div class="form-group">
+            <label for="addImportanceForm">Importance</label>
+            <input type="text" class="form-control" id="addImportanceForm" placeholder="Importance">
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="submitRequest" (click)="onNewNode.emit()">Create Node</button>
+      </div>
+    </div>
+  </div>
+</div>

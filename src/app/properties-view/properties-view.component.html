@@ -1,0 +1,26 @@
+<div id="sidebar" class="bg-dark">
+  <hr style="background-color: lightpink; margin: 0; padding-left: 0; padding-bottom: 0;">
+  <div class="h5">
+    Task Info
+  </div>
+  <ul class="nav flex-column" id="collapsiblePanel" *ngIf="task.tag">
+    <li class="nav-item">
+      <label class="taskLabel" for="nameInput">Name:</label><input type="text" id="nameInput" style="width: 200px" value="{{ task.tag.name }}">
+    </li>
+    <li class="nav-item">
+      <label class="taskLabel" for="descriptionInput">Description: </label><input type="text" id="descriptionInput" style="width: 200px" value="{{ task.tag.description }}">
+    </li>
+    <li class="nav-item">
+      <label class="taskLabel" for="dateInput">Notification date: </label><input type="text" id="dateInput" style="width: 200px" value="{{ task.tag.notificationDate }}">
+    </li>
+    <li class="nav-item">
+      <label class="taskLabel" for="importanceInput">Importance: </label><input type="text" id="importanceInput" style="width: 200px" value="{{ task.tag.importance }}">
+    </li>
+    <li class="nav-item">
+      <button id="editButton" class="btn btn-outline-secondary" (click)="editClicked.emit()" style="width: 200px; margin-top: 15px;">Edit Task</button>
+    </li>
+  </ul>
+  <div>
+    <button id="deleteButton" class="btn btn-outline-secondary" (click)="deleteClicked.emit()" style="width: 200px; margin-top: 15px;">Delete</button>
+  </div>
+</div>
