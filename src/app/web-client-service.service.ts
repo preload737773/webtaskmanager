@@ -32,9 +32,9 @@ export class WebClientServiceService {
   }
 
   editTask(
-      nodeInfo: HTMLElement, name: HTMLInputElement, description: HTMLInputElement, date: HTMLInputElement, importance: HTMLInputElement
+      node: Task
   ) : Promise<Response> | null {
-    if (name != null && description != null && date != null && importance != null) {
+    if (node.id != null && node.name != null && node.description != null && node.notificationDate != null && node.importance != null && node.style != null) {
       return fetch(TASKS_HTML_ADDRESS, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -42,12 +42,12 @@ export class WebClientServiceService {
         credentials: "include",
         // format the data
         body: JSON.stringify({
-          id: nodeInfo.id,
-          name: name.value,
-          description: description.value,
-          notificationDate: date.value,
-          importance: importance.value,
-          style: nodeInfo.style
+          id: node.id,
+          name: node.name,
+          description: node.description,
+          notificationDate: node.notificationDate,
+          importance: node.importance,
+          style: node.style
         })
       });
     }

@@ -2,15 +2,17 @@ import {AfterViewInit, ApplicationRef, Component, ComponentFactoryResolver, Inje
 import 'yfiles/view-layout-bridge.js';
 import {
     FreeNodePortLocationModel,
-    GraphComponent, IEdge, IModelItem,
+    GraphComponent, IEdge, IModelItem, INode, Rect,
     TemplateNodeStyle
 } from "yfiles";
-import {GraphComponentComponent} from "./graph-component/graph-component.component";
-import {WebClientServiceService} from "./web-client-service.service";
-import {ExportConstants} from "./exportConstants";
+import {GraphComponentComponent} from "../graph-component/graph-component.component";
+import {WebClientServiceService} from "../web-client-service.service";
+import {ExportConstants} from "../exportConstants";
+import moment from "moment";
+import {WebLoginService} from "../login/web-login.service";
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-wtm',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -28,6 +30,7 @@ export class AppComponent implements AfterViewInit {
   ) {
     this.isSidebarOpened = false;
     this.webClientService = _injector.get(WebClientServiceService);
+    _injector.get(WebLoginService).setLoginInformation();
   }
 
   private initialize(json: JSON) : void {
@@ -45,6 +48,19 @@ export class AppComponent implements AfterViewInit {
           }
       });
       this.gcComponent.run(json);
+      setInterval(() => {
+          this.gcComponent.graphComponent.graph.nodes.forEach((node: INode) => {
+              let now = moment();
+              let notificationDate = moment(node.tag.notificationDate);
+              if (notificationDate.isSameOrBefore(now) && node.tag.style == ExportConstants.processNodeStyle && node.tag.importance != "expired") {
+                  this.showCustomToast("Web Task Manager", `The ${node.tag.name} task is expired!`);
+                  node.tag.importance = "expired";
+                  this.webClientService.editTask(node.tag);
+                  this.gcComponent.graphComponent.graph.setStyle(node, new TemplateNodeStyle(node.tag.style));
+                  this.gcComponent.graphComponent.morphLayout(this.gcComponent.createLayout(true)).then();
+              }
+          })
+      }, 15000);
   }
 
   ngAfterViewInit() : void {
@@ -77,6 +93,9 @@ export class AppComponent implements AfterViewInit {
                       ? node.tag.description.substr(0, ExportConstants.descriptiomLengthLimit) + '...' : node.tag.description;
                   this.gcComponent.graphComponent.graph.addPortAt(node, node.layout.center);
                   this.gcComponent.graphComponent.graph.setStyle(node, new TemplateNodeStyle(node.tag.style));
+                  let rect = (node.tag.style == ExportConstants.ifNodeStyle) ? new Rect(0, 0, ExportConstants.ifNodeWidth, ExportConstants.ifNodeHeight)
+                      : new Rect(0, 0, ExportConstants.processNodeWidth, ExportConstants.processNodeHeight);
+                  this.gcComponent.graphComponent.graph.setNodeLayout(node, rect);
                   this.gcComponent.graphComponent.morphLayout(this.gcComponent.createLayout(true)).then();
               });
           }
@@ -90,13 +109,13 @@ export class AppComponent implements AfterViewInit {
       let description: HTMLInputElement = document.getElementById('descriptionInput') as HTMLInputElement;
       let date: HTMLInputElement = document.getElementById('dateInput') as HTMLInputElement;
       let importance: HTMLInputElement = document.getElementById('importanceInput') as HTMLInputElement;
-      let editTaskResponse = this.webClientService.editTask(nodeInfo.tag, name, description, date, importance);
+      nodeInfo.tag.name = name.value;
+      nodeInfo.tag.description = description.value;
+      nodeInfo.tag.notificationDate = date.value;
+      nodeInfo.tag.importance = importance.value;
+      let editTaskResponse = this.webClientService.editTask(nodeInfo.tag);
       if (editTaskResponse) {
           editTaskResponse.then(() => {
-                nodeInfo.tag.name = name.value;
-                nodeInfo.tag.description = description.value;
-                nodeInfo.tag.notificationDate = date.value;
-                nodeInfo.tag.importance = importance.value;
                 let a = new TemplateNodeStyle(nodeInfo.tag.style);
                 nodeInfo.tag.wrappedName = (nodeInfo.tag.name.length > ExportConstants.nameLengthLimit)
                       ? nodeInfo.tag.name.substr(0, ExportConstants.nameLengthLimit) + '...' : nodeInfo.tag.name;
@@ -140,4 +159,13 @@ export class AppComponent implements AfterViewInit {
   public closeSidebar() : void {
     this.isSidebarOpened = false;
   }
+
+    public showCustomToast(header: string, body: string) : void {
+        let toast = $('.toast');
+        toast.show();
+        $('#toastHeader').text(header);
+        toast.children('.toast-body').text(body);
+        toast.toast({delay: 10000});
+        toast.toast('show');
+    }
 }

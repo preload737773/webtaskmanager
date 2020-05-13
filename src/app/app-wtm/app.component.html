@@ -1,13 +1,4 @@
 <app-modal (onNewNode)="addTask()"></app-modal>
-<nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Web Task Manager</a>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#" id="username">Sign in</a>
-        </li>
-    </ul>
-</nav>
-
 <div class="container">
     <div class="row">
         <div class="col-md-1 d-none d-md-block bg-dark" id="sidebar-left">
@@ -26,8 +17,24 @@
 
         <main role="main" class="col-md-11 ml-sm-auto col-lg-11">
             <graph-component></graph-component>
+            <div class="toast" role="alert" aria-live="assertive">
+                <div class="toast-header">
+                    <img src="../../assets/icons/alarm.svg" class="rounded mr-auto" alt="alarm">
+                    <strong id="toastHeader" class="mr-5" style="padding-left: 15px">Web Task Manager</strong>
+                    <small>now</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Loading...
+                </div>
+            </div>
         </main>
         <properties-view *ngIf="isSidebarOpened" [task]="currentTask" (editClicked)="editTask()" (deleteClicked)="deleteItem()"></properties-view>
     </div>
 </div>
-<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    $('.toast').hide();
+</script>

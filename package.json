@@ -25,6 +25,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "2.5.7",
     "jquery": "^3.5.0",
+    "moment": "^2.25.3",
     "rxjs": "6.5.3",
     "yfiles": "C:\\Users\\1\\WebstormProjects\\wtm_angular\\lib\\es-modules\\yfiles-22.0.3-eval.tgz",
     "zone.js": "0.9.1"

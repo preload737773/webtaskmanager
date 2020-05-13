@@ -1,19 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
-import { AppComponent } from './app.component'
+import { AppComponent } from './app-wtm/app.component'
 import { GraphComponentComponent } from './graph-component/graph-component.component'
 import { PropertiesViewComponent } from './properties-view/properties-view.component';
 import { DragAndDropPanelComponent } from './drag-and-drop-panel/drag-and-drop-panel.component';
 import { ModalComponent } from './modal/modal.component'
 import {WebClientServiceService} from "./web-client-service.service";
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { RootComponent } from './root/root.component';
+import { StartComponent } from './start/start.component';
+import {WebLoginService} from "./login/web-login.service";
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 @NgModule({
-  entryComponents: [AppComponent],
-  declarations: [AppComponent, GraphComponentComponent, PropertiesViewComponent, DragAndDropPanelComponent, ModalComponent],
-  imports: [BrowserModule, FormsModule],
-  providers: [WebClientServiceService],
-  bootstrap: [AppComponent]
+  entryComponents: [RootComponent],
+  declarations: [AppComponent, GraphComponentComponent, PropertiesViewComponent, DragAndDropPanelComponent, ModalComponent, LoginComponent, RootComponent, StartComponent, ProfileViewComponent],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  providers: [WebClientServiceService, WebLoginService],
+  bootstrap: [RootComponent]
 })
 export class AppModule {}
