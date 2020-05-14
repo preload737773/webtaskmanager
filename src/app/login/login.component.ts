@@ -1,6 +1,5 @@
 import {Component, Injector, OnInit} from '@angular/core';
-import {WebLoginService} from "./web-login.service";
-import {FormBuilder} from "@angular/forms";
+import {WebLoginService} from "../web-login.service";
 
 @Component({
   selector: 'app-login',
@@ -23,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   public onSubmit() : void {
     this.webLoginService.login();
+    this.isLoggedIn = this.webLoginService.checkLogin();
   }
 
 }

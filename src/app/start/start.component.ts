@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WebLoginService} from "../web-login.service";
 
 @Component({
   selector: 'app-start',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartComponent implements OnInit {
 
-  constructor() { }
+  constructor() {  }
 
   ngOnInit() {
   }

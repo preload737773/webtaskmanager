@@ -9,7 +9,7 @@ import {GraphComponentComponent} from "../graph-component/graph-component.compon
 import {WebClientServiceService} from "../web-client-service.service";
 import {ExportConstants} from "../exportConstants";
 import moment from "moment";
-import {WebLoginService} from "../login/web-login.service";
+import {WebLoginService} from "../web-login.service";
 
 @Component({
   selector: 'app-wtm',

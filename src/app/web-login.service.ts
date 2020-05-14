@@ -8,17 +8,25 @@ export class WebLoginService {
     }
 
     public setLoginInformation() : void {
-        document.getElementById("username")!.innerHTML = this.getCookie("username");
+        let usernameLabel = document.getElementById("username") as HTMLAnchorElement;
+        if (usernameLabel) {
+            usernameLabel.text = this.getCookie("username");
+            usernameLabel.href = "/profile";
+        }
     }
 
     public checkLogin() : boolean {
-        return this.getCookie("token") == "";
+        return this.getCookie("token") != "";
     }
 
     public deleteCookie() : void {
         this.setCookie("token", "", 0);
         this.setCookie("username", "", 0);
-        document.getElementById("username")!.innerHTML = "Sign In";
+        let usernameLabel = document.getElementById("username") as HTMLAnchorElement;
+        if (usernameLabel) {
+            usernameLabel.text = "Sign In";
+            usernameLabel.href = "/login";
+        }
     }
 
     public getCookie(cname: string) : string {
@@ -65,6 +73,7 @@ export class WebLoginService {
                     if (username) {
                         username.innerHTML = name.value;
                         this.setCookie("username", name.value, 1);
+                        location.reload();
                     }
                 }
                 else {

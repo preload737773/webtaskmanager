@@ -12,12 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RootComponent } from './root/root.component';
 import { StartComponent } from './start/start.component';
-import {WebLoginService} from "./login/web-login.service";
+import {WebLoginService} from "./web-login.service";
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ErrorComponent } from './error/error.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   entryComponents: [RootComponent],
-  declarations: [AppComponent, GraphComponentComponent, PropertiesViewComponent, DragAndDropPanelComponent, ModalComponent, LoginComponent, RootComponent, StartComponent, ProfileViewComponent],
+  declarations: [AppComponent, GraphComponentComponent, PropertiesViewComponent, DragAndDropPanelComponent, ModalComponent, LoginComponent, RootComponent, StartComponent, ProfileViewComponent, ErrorComponent, RegistrationComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [WebClientServiceService, WebLoginService],
   bootstrap: [RootComponent]

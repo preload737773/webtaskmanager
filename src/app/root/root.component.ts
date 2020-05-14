@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WebLoginService} from "../web-login.service";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private webLoginService: WebLoginService
+  ) {
+    if (webLoginService.checkLogin()) {
+      webLoginService.setLoginInformation();
+    }
+    else
+      webLoginService.deleteCookie();
+  }
 
   ngOnInit() {
   }

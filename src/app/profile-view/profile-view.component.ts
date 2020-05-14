@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WebLoginService} from "../web-login.service";
 
 @Component({
   selector: 'app-profile-view',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private webLoginService: WebLoginService
+  ) { }
 
   ngOnInit() {
+  }
+
+  public logout() {
+    this.webLoginService.deleteCookie();
   }
 
 }
