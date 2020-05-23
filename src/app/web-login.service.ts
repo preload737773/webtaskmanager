@@ -16,7 +16,7 @@ export class WebLoginService {
     }
 
     public checkLogin() : boolean {
-        return this.getCookie("token") != "";
+        return (this.getCookie("token") != "") && (this.getCookie("username") != "");
     }
 
     public deleteCookie() : void {

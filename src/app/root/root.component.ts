@@ -18,6 +18,10 @@ export class RootComponent implements OnInit {
       webLoginService.deleteCookie();
   }
 
+  public checkLogin() : boolean {
+    return this.webLoginService.checkLogin();
+  }
+
   ngOnInit() {
   }
 

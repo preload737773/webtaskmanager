@@ -1,14 +1,20 @@
-<div id="login-view" *ngIf="!isLoggedIn">
-  <form (ngSubmit)="onSubmit()">
-    <label for="emailForm">Your login: </label>
-    <input type="text" id="emailForm">
-    <br>
-    <label for="passwordForm">Your password: </label>
-    <input type="password" id="passwordForm">
-    <br>
-    <button type="submit">Login</button>
-  </form>
-</div>
-<div *ngIf="isLoggedIn">
-  You are logged in!
+<div class="view">
+  <div id="login-view" *ngIf="!isLoggedIn">
+    <form (ngSubmit)="onSubmit()">
+      <label class="formLabel" for="emailForm">Your login: </label> <br>
+      <input type="text" id="emailForm">
+      <br>
+      <label class="formLabel" for="passwordForm">Your password: </label> <br>
+      <input type="password" id="passwordForm">
+      <br>
+      <a href="/register" id="registerLabel">Don't you have an account? Register!</a>
+      <br>
+      <button class="btn btn-outline-primary login-button" type="submit">Login</button>
+    </form>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <div class="container-fluid text-center m-3">
+      <button class="btn btn-outline-secondary" routerLink="/app">Go to the app</button>
+    </div>
+  </div>
 </div>

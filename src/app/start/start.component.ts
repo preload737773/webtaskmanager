@@ -8,9 +8,13 @@ import {WebLoginService} from "../web-login.service";
 })
 export class StartComponent implements OnInit {
 
-  constructor() {  }
+  constructor(
+      private webLoginService: WebLoginService
+  ) {  }
 
   ngOnInit() {
+    let button = document.getElementById("app-loader-btn") as HTMLAnchorElement;
+    button.href = (this.webLoginService.checkLogin()) ? "/app" : "login";
   }
 
 }

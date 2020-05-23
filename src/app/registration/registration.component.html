@@ -1,14 +1,16 @@
-<div id="registration-view" *ngIf="!isLoggedIn">
-  <form (ngSubmit)="onSubmit()">
-    <label for="emailForm">Your login: </label>
-    <input type="text" id="emailForm">
-    <br>
-    <label for="passwordForm">Your password: </label>
-    <input type="password" id="passwordForm">
-    <br>
-    <button type="submit">Login</button>
-  </form>
-</div>
-<div *ngIf="isLoggedIn">
-  You have to log out before trying to register!
+<div class="view">
+  <div id="registration-view" *ngIf="!isLoggedIn">
+    <form (ngSubmit)="onSubmit()">
+      <label class="formLabel" for="emailForm">Login: </label>
+      <input type="text" id="emailForm">
+      <br>
+      <label class="formLabel" for="passwordForm">Password: </label>
+      <input type="password" id="passwordForm">
+      <br>
+      <button class="btn btn-outline-primary register-button" type="submit">Register</button>
+    </form>
+  </div>
+  <div *ngIf="isLoggedIn">
+    You have to log out before trying to register!
+  </div>
 </div>

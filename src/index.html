@@ -5,6 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Web Task Manager</title>
+  <style>
+    .choosable {
+      background-color: #343a40;
+      padding: 0 10px 0 10px;
+    }
+
+    .choosable:hover {
+      background-color: #000000;
+    }
+
+    .app-root {
+      height: 100%;
+      width: 100%;
+     }
+  </style>
   <script type="text/yfiles-template">
     <g id="startNode">
       <rect fill='#ce93d8' stroke='#FFE5B4' stroke-width="2" rx='0' ry='0' width='{TemplateBinding width}' height='{TemplateBinding height}'></rect>
@@ -38,12 +53,14 @@
 <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Web Task Manager</a>
   <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="/login" routerLink="/login" id="username">Sign in</a>
+    <li class="nav-item text-nowrap choosable">
+      <div routerLink="/login" style="display: flex">
+        <a  class="nav-link" id="username">Sign in</a>
+      </div>
     </li>
   </ul>
 </nav>
-<app-root></app-root>
+<app-root class="app-root"></app-root>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
